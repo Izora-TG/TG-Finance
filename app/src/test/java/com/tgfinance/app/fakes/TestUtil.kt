@@ -59,3 +59,13 @@ class FakeSettingsRepository(
     override suspend fun setDefaultsSeeded() = state.update { it.copy(defaultsSeeded = true) }
     override suspend fun updateSync(transform: (SyncSettings) -> SyncSettings) = sync.update(transform)
 }
+
+class FakeSyncController : com.tgfinance.app.data.sync.SyncController {
+    val state = MutableStateFlow(com.tgfinance.app.data.sync.SyncStatus())
+    var syncCalls = 0
+    override val status = state
+    override suspend fun syncNow(): Result<com.tgfinance.core.sync.SyncReport?> {
+        syncCalls++
+        return Result.success(null)
+    }
+}

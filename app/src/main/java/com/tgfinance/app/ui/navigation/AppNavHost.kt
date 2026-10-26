@@ -23,6 +23,7 @@ import com.tgfinance.app.ui.recurring.RecurringEditRoute
 import com.tgfinance.app.ui.recurring.RecurringRoute
 import com.tgfinance.app.ui.settings.SettingsRoute
 import com.tgfinance.app.ui.statistics.StatisticsRoute
+import com.tgfinance.app.ui.sync.SyncRoute
 import com.tgfinance.app.ui.transactions.TransactionEditRoute
 import com.tgfinance.app.ui.transactions.TransactionsRoute
 import com.tgfinance.core.model.CategoryType
@@ -50,6 +51,7 @@ fun AppNavHost(
                 onOpenGoals = { navController.navigate(Dest.Goals) },
                 onOpenAccounts = { navController.navigate(Dest.Accounts) },
                 onOpenSettings = { navController.navigate(Dest.Settings) },
+                onOpenSync = { navController.navigate(Dest.Sync) },
             )
         }
         composable<Dest.Transactions> {
@@ -133,5 +135,6 @@ fun AppNavHost(
             SettingsRoute(onBack = back, onNavigate = { navController.navigate(it) })
         }
         composable<Dest.Backup> { BackupRoute(onBack = back) }
+        composable<Dest.Sync> { SyncRoute(onBack = back) }
     }
 }

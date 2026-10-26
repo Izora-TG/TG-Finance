@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Autorenew
 import androidx.compose.material.icons.outlined.Category
+import androidx.compose.material.icons.outlined.CloudSync
 import androidx.compose.material.icons.outlined.FileDownload
 import androidx.compose.material.icons.outlined.PieChart
 import androidx.compose.material.icons.outlined.Savings
@@ -49,6 +50,7 @@ val moreEntries = listOf(
     MoreEntry(Dest.Goals, R.string.goals_title, R.string.more_goals_subtitle, Icons.Outlined.Savings),
     MoreEntry(Dest.Recurring, R.string.recurring_title, R.string.more_recurring_subtitle, Icons.Outlined.Autorenew),
     MoreEntry(Dest.Categories, R.string.categories_title, R.string.more_categories_subtitle, Icons.Outlined.Category),
+    MoreEntry(Dest.Sync, R.string.sync_title, R.string.more_sync_subtitle, Icons.Outlined.CloudSync),
     MoreEntry(Dest.Backup, R.string.backup_title, R.string.more_backup_subtitle, Icons.Outlined.FileDownload),
     MoreEntry(Dest.Settings, R.string.settings_title, R.string.more_settings_subtitle, Icons.Outlined.Settings),
 )

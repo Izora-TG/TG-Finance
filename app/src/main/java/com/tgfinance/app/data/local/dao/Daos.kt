@@ -25,6 +25,10 @@ interface SyncDao<E> {
     suspend fun upsertAll(entities: List<E>)
     suspend fun markClean(id: String, updatedAt: Long, deviceId: String)
     suspend fun allIncludingDeleted(): List<E>
+    /** Queues every user-created row for upload (first sign-in to a server). */
+    suspend fun markAllDirty()
+    /** Re-stamps every user-created row so that it overwrites the server copy (E2E switch). */
+    suspend fun touchAll(now: Long, deviceId: String)
 }
 
 data class AccountBalanceRow(
@@ -78,6 +82,12 @@ interface AccountDao : SyncDao<AccountEntity> {
 
     @Query("SELECT * FROM accounts")
     override suspend fun allIncludingDeleted(): List<AccountEntity>
+
+    @Query("UPDATE accounts SET dirty = 1 WHERE deviceId != 'seed'")
+    override suspend fun markAllDirty()
+
+    @Query("UPDATE accounts SET dirty = 1, updatedAt = :now, deviceId = :deviceId WHERE deviceId != 'seed'")
+    override suspend fun touchAll(now: Long, deviceId: String)
 }
 
 data class CategoryUsageRow(
@@ -132,6 +142,12 @@ interface CategoryDao : SyncDao<CategoryEntity> {
 
     @Query("SELECT * FROM categories")
     override suspend fun allIncludingDeleted(): List<CategoryEntity>
+
+    @Query("UPDATE categories SET dirty = 1 WHERE deviceId != 'seed'")
+    override suspend fun markAllDirty()
+
+    @Query("UPDATE categories SET dirty = 1, updatedAt = :now, deviceId = :deviceId WHERE deviceId != 'seed'")
+    override suspend fun touchAll(now: Long, deviceId: String)
 }
 
 data class TypeTotalRow(
@@ -245,6 +261,12 @@ interface TransactionDao : SyncDao<TransactionEntity> {
 
     @Query("SELECT * FROM transactions")
     override suspend fun allIncludingDeleted(): List<TransactionEntity>
+
+    @Query("UPDATE transactions SET dirty = 1 WHERE deviceId != 'seed'")
+    override suspend fun markAllDirty()
+
+    @Query("UPDATE transactions SET dirty = 1, updatedAt = :now, deviceId = :deviceId WHERE deviceId != 'seed'")
+    override suspend fun touchAll(now: Long, deviceId: String)
 }
 
 @Dao
@@ -275,6 +297,12 @@ interface BudgetDao : SyncDao<BudgetEntity> {
 
     @Query("SELECT * FROM budgets")
     override suspend fun allIncludingDeleted(): List<BudgetEntity>
+
+    @Query("UPDATE budgets SET dirty = 1 WHERE deviceId != 'seed'")
+    override suspend fun markAllDirty()
+
+    @Query("UPDATE budgets SET dirty = 1, updatedAt = :now, deviceId = :deviceId WHERE deviceId != 'seed'")
+    override suspend fun touchAll(now: Long, deviceId: String)
 }
 
 @Dao
@@ -305,6 +333,12 @@ interface RecurringDao : SyncDao<RecurringEntity> {
 
     @Query("SELECT * FROM recurring_rules")
     override suspend fun allIncludingDeleted(): List<RecurringEntity>
+
+    @Query("UPDATE recurring_rules SET dirty = 1 WHERE deviceId != 'seed'")
+    override suspend fun markAllDirty()
+
+    @Query("UPDATE recurring_rules SET dirty = 1, updatedAt = :now, deviceId = :deviceId WHERE deviceId != 'seed'")
+    override suspend fun touchAll(now: Long, deviceId: String)
 }
 
 @Dao
@@ -332,6 +366,12 @@ interface GoalDao : SyncDao<GoalEntity> {
 
     @Query("SELECT * FROM savings_goals")
     override suspend fun allIncludingDeleted(): List<GoalEntity>
+
+    @Query("UPDATE savings_goals SET dirty = 1 WHERE deviceId != 'seed'")
+    override suspend fun markAllDirty()
+
+    @Query("UPDATE savings_goals SET dirty = 1, updatedAt = :now, deviceId = :deviceId WHERE deviceId != 'seed'")
+    override suspend fun touchAll(now: Long, deviceId: String)
 }
 
 @Dao

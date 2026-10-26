@@ -7,6 +7,7 @@ import com.tgfinance.app.fakes.FakeGoalRepository
 import com.tgfinance.app.fakes.FakeRecurringRepository
 import com.tgfinance.app.fakes.FakeSettingsRepository
 import com.tgfinance.app.fakes.FakeStore
+import com.tgfinance.app.fakes.FakeSyncController
 import com.tgfinance.app.fakes.FakeTimeProvider
 import com.tgfinance.app.fakes.FakeTransactionRepository
 import com.tgfinance.app.fakes.MainDispatcherRule
@@ -29,6 +30,7 @@ abstract class ViewModelTestBase {
     protected val budgets = FakeBudgetRepository(store)
     protected val recurring = FakeRecurringRepository(store)
     protected val goals = FakeGoalRepository(store)
+    protected val sync = FakeSyncController()
 
     protected val giro = Account("giro", "Girokonto", AccountType.CHECKING, 100_000, 0, "bank")
     protected val cash = Account("cash", "Bargeld", AccountType.CASH, 5_000, 0, "cash")

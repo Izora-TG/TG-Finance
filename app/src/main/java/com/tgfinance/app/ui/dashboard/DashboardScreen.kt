@@ -54,6 +54,7 @@ import com.tgfinance.app.ui.components.SectionCard
 import com.tgfinance.app.ui.components.TransactionRow
 import com.tgfinance.app.ui.navigation.LocalAdaptiveInfo
 import com.tgfinance.app.ui.preview.PreviewData
+import com.tgfinance.app.ui.sync.SyncStatusIndicator
 import com.tgfinance.app.ui.theme.LocalMoneyFormatter
 import com.tgfinance.app.ui.theme.Spacing
 import com.tgfinance.app.ui.theme.TgFinanceTheme
@@ -75,6 +76,7 @@ data class DashboardActions(
     val onOpenGoals: () -> Unit = {},
     val onOpenAccounts: () -> Unit = {},
     val onOpenSettings: () -> Unit = {},
+    val onOpenSync: () -> Unit = {},
     val onRefresh: () -> Unit = {},
 )
 
@@ -87,10 +89,12 @@ fun DashboardRoute(
     onOpenGoals: () -> Unit,
     onOpenAccounts: () -> Unit,
     onOpenSettings: () -> Unit,
+    onOpenSync: () -> Unit,
     viewModel: DashboardViewModel = hiltViewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val refreshing by viewModel.refreshing.collectAsStateWithLifecycle()
+    val syncStatus by viewModel.syncStatus.collectAsStateWithLifecycle()
     DashboardScreen(
         state = state,
         refreshing = refreshing,
@@ -102,8 +106,10 @@ fun DashboardRoute(
             onOpenGoals = onOpenGoals,
             onOpenAccounts = onOpenAccounts,
             onOpenSettings = onOpenSettings,
+            onOpenSync = onOpenSync,
             onRefresh = viewModel::refresh,
         ),
+        statusContent = { SyncStatusIndicator(syncStatus, onClick = onOpenSync) },
     )
 }
 

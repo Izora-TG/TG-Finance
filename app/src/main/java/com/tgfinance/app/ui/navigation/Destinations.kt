@@ -37,6 +37,7 @@ object Dest {
     @Serializable data class GoalEdit(val id: String? = null)
     @Serializable data object Settings
     @Serializable data object Backup
+    @Serializable data object Sync
 }
 
 enum class TopLevelDestination(

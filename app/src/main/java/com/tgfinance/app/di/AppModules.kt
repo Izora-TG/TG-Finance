@@ -17,6 +17,12 @@ import com.tgfinance.app.data.repository.RoomTransactionRepository
 import com.tgfinance.app.data.repository.TransactionRepository
 import com.tgfinance.app.data.settings.DataStoreSettingsRepository
 import com.tgfinance.app.data.settings.SettingsRepository
+import com.tgfinance.app.data.sync.ConnectivityNetworkMonitor
+import com.tgfinance.app.data.sync.KeystoreSecretStorage
+import com.tgfinance.app.data.sync.NetworkMonitor
+import com.tgfinance.app.data.sync.SecretStorage
+import com.tgfinance.app.data.sync.SyncController
+import com.tgfinance.app.data.sync.SyncManager
 import com.tgfinance.app.util.IdGenerator
 import com.tgfinance.app.util.SystemTimeProvider
 import com.tgfinance.app.util.TimeProvider
@@ -64,4 +70,7 @@ abstract class BindingsModule {
     @Binds abstract fun bindGoals(impl: RoomGoalRepository): GoalRepository
     @Binds abstract fun bindTime(impl: SystemTimeProvider): TimeProvider
     @Binds abstract fun bindIds(impl: UuidGenerator): IdGenerator
+    @Binds abstract fun bindSecrets(impl: KeystoreSecretStorage): SecretStorage
+    @Binds abstract fun bindNetwork(impl: ConnectivityNetworkMonitor): NetworkMonitor
+    @Binds abstract fun bindSync(impl: SyncManager): SyncController
 }

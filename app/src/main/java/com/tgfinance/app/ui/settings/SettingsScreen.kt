@@ -18,6 +18,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Category
+import androidx.compose.material.icons.outlined.CloudSync
 import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.Euro
 import androidx.compose.material.icons.outlined.Event
@@ -177,6 +178,12 @@ fun SettingsScreen(
                     icon = Icons.Outlined.Category,
                     title = stringResource(R.string.categories_title),
                     onClick = { actions.onNavigate(Dest.Categories) },
+                ) { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) }
+                SettingRow(
+                    icon = Icons.Outlined.CloudSync,
+                    title = stringResource(R.string.sync_title),
+                    subtitle = stringResource(R.string.more_sync_subtitle),
+                    onClick = { actions.onNavigate(Dest.Sync) },
                 ) { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) }
                 SettingRow(
                     icon = Icons.Outlined.FileDownload,

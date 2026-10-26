@@ -8,6 +8,8 @@ import com.tgfinance.app.data.repository.GoalRepository
 import com.tgfinance.app.data.repository.RecurringRepository
 import com.tgfinance.app.data.repository.TransactionRepository
 import com.tgfinance.app.data.settings.SettingsRepository
+import com.tgfinance.app.data.sync.SyncController
+import com.tgfinance.app.data.sync.SyncStatus
 import com.tgfinance.app.util.TimeProvider
 import com.tgfinance.core.model.BudgetProgress
 import com.tgfinance.core.model.CategoryTotal
@@ -55,7 +57,11 @@ class DashboardViewModel @Inject constructor(
     settings: SettingsRepository,
     private val recurring: RecurringRepository,
     private val time: TimeProvider,
+    private val sync: SyncController,
 ) : ViewModel() {
+
+    val syncStatus: StateFlow<SyncStatus> =
+        sync.status.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), SyncStatus())
 
     private val _refreshing = MutableStateFlow(false)
     val refreshing: StateFlow<Boolean> = _refreshing.asStateFlow()
@@ -90,13 +96,14 @@ class DashboardViewModel @Inject constructor(
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), DashboardUiState())
 
-    /** Pull-to-refresh: books due recurring transactions (and later syncs). */
+    /** Pull-to-refresh: books due recurring transactions and syncs with the server (if enabled). */
     fun refresh() {
         if (_refreshing.value) return
         viewModelScope.launch {
             _refreshing.value = true
             try {
                 recurring.processDue(time.today())
+                sync.syncNow()
             } finally {
                 _refreshing.value = false
             }

@@ -2,14 +2,20 @@ package com.tgfinance.app
 
 import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.work.Configuration
 import com.tgfinance.app.data.local.DefaultDataSeeder
+import com.tgfinance.app.data.settings.SettingsRepository
 import com.tgfinance.app.di.ApplicationScope
 import com.tgfinance.app.ui.lock.AppLock
 import com.tgfinance.app.work.WorkScheduler
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,6 +26,7 @@ class TgFinanceApp : Application(), Configuration.Provider {
     @Inject lateinit var seeder: DefaultDataSeeder
     @Inject lateinit var scheduler: WorkScheduler
     @Inject lateinit var appLock: AppLock
+    @Inject lateinit var settings: SettingsRepository
     @Inject @field:ApplicationScope lateinit var appScope: CoroutineScope
 
     override val workManagerConfiguration: Configuration
@@ -27,10 +34,20 @@ class TgFinanceApp : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-        ProcessLifecycleOwner.get().lifecycle.addObserver(appLock)
+        val processLifecycle = ProcessLifecycleOwner.get().lifecycle
+        processLifecycle.addObserver(appLock)
+        processLifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onStart(owner: LifecycleOwner) {
+                // Sync whenever the app comes to the foreground (if enabled).
+                appScope.launch { if (settings.syncSettings.first().enabled) scheduler.syncNow() }
+            }
+        })
         appScope.launch {
             seeder.seedIfNeeded()
             scheduler.scheduleRecurring()
+        }
+        appScope.launch {
+            settings.syncSettings.map { it.enabled }.distinctUntilChanged().collect { scheduler.scheduleSync(it) }
         }
     }
 }

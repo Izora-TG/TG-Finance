@@ -42,7 +42,7 @@ class OtherViewModelsTest : ViewModelTestBase() {
     @Test
     fun dashboardShowsBalanceMonthTotalsAndBudgetWarnings() = runTest {
         store.budgets.value = listOf(Budget("b1", "food", 10_000))
-        val vm = DashboardViewModel(accounts, transactions, budgets, goals, settings, recurring, time)
+        val vm = DashboardViewModel(accounts, transactions, budgets, goals, settings, recurring, time, sync)
         vm.uiState.test {
             val state = expectMostRecentItem()
             // 1000 + 50 initial + 3000 income − 150 expenses (transfer neutral)
@@ -58,7 +58,7 @@ class OtherViewModelsTest : ViewModelTestBase() {
     @Test
     fun dashboardRespectsCustomMonthStart() = runTest {
         settings.setMonthStartDay(20)
-        val vm = DashboardViewModel(accounts, transactions, budgets, goals, settings, recurring, time)
+        val vm = DashboardViewModel(accounts, transactions, budgets, goals, settings, recurring, time, sync)
         vm.uiState.test {
             val state = expectMostRecentItem()
             assertEquals(LocalDate.of(2024, 4, 20), state.period!!.start)
@@ -70,9 +70,10 @@ class OtherViewModelsTest : ViewModelTestBase() {
 
     @Test
     fun dashboardRefreshProcessesRecurringBookings() = runTest {
-        val vm = DashboardViewModel(accounts, transactions, budgets, goals, settings, recurring, time)
+        val vm = DashboardViewModel(accounts, transactions, budgets, goals, settings, recurring, time, sync)
         vm.refresh()
         assertEquals(today, recurring.processedUpTo)
+        assertEquals(1, sync.syncCalls)
         assertFalse(vm.refreshing.value)
     }
 
