@@ -97,7 +97,10 @@ class SyncEngine(
             return false // echo of our own push or already applied
         }
         val remoteWins = LastWriteWins.candidateWins(remote.version, local.version)
-        if (local.dirty) {
+        // An older version written by this device is just the echo of an earlier push that
+        // was edited again since – not a concurrent change, so not a conflict.
+        val ownEcho = remote.deviceId == store.deviceId && !remoteWins
+        if (local.dirty && !ownEcho) {
             conflicts += SyncConflict(
                 key = remote.key,
                 local = local.version,

@@ -1,0 +1,9 @@
+**/build
+**/.gradle
+.kotlin
+.idea
+app
+docs
+server/.env
+server/data
+*.apk

@@ -126,6 +126,18 @@ class SyncEngineTest {
     }
 
     @Test
+    fun `own echo after a further local edit is no conflict`() = runTest {
+        phone.edit("category", "c1", "v1", at = 1000)
+        engine(phone).sync()
+        // Simulate a lost cursor update: the next pull delivers our own push again.
+        phone.saveCursor(0)
+        phone.edit("category", "c1", "v2", at = 2000)
+        val report = engine(phone).sync()
+        assertTrue(report.conflicts.isEmpty())
+        assertEquals("v2", server.get(RecordKey("category", "c1"))!!.payload)
+    }
+
+    @Test
     fun `edit made during push is not marked clean`() = runTest {
         phone.edit("account", "a1", "v1", at = 1000)
         val pushed = phone.dirtyRecords().single()
