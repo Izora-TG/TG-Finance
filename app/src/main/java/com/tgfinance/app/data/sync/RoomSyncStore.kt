@@ -38,7 +38,24 @@ class RoomSyncStore(
         val serializer: KSerializer<E>,
         /** Applies the record metadata to a decoded entity and marks it clean. */
         val withMeta: (E, SyncRecord) -> E,
-    )
+    ) {
+        suspend fun dirtyRecords(json: Json): List<SyncRecord> = dao.dirty().map { entity ->
+            SyncRecord(type, entity.id, entity.updatedAt, entity.deleted, entity.deviceId, json.encodeToString(serializer, entity))
+        }
+
+        suspend fun applyRecord(json: Json, record: SyncRecord) {
+            val decoded = try {
+                json.decodeFromString(serializer, record.payload)
+            } catch (e: SerializationException) {
+                Log.w(TAG, "Skipping undecodable ${record.type} ${record.id}", e)
+                return
+            } catch (e: IllegalArgumentException) {
+                Log.w(TAG, "Skipping invalid ${record.type} ${record.id}", e)
+                return
+            }
+            dao.upsert(withMeta(decoded, record))
+        }
+    }
 
     private val adapters: Map<String, Adapter<*>> = listOf(
         Adapter(TYPE_ACCOUNT, db.accountDao(), AccountEntity.serializer()) { e, r ->
@@ -70,28 +87,11 @@ class RoomSyncStore(
         return LocalRecordState(RecordVersion(entity.updatedAt, entity.deviceId), entity.dirty)
     }
 
-    override suspend fun dirtyRecords(): List<SyncRecord> = adapters.values.flatMap { it.dirtyRecords() }
-
-    private suspend fun <E : SyncEntity> Adapter<E>.dirtyRecords(): List<SyncRecord> = dao.dirty().map { entity ->
-        SyncRecord(type, entity.id, entity.updatedAt, entity.deleted, entity.deviceId, json.encodeToString(serializer, entity))
-    }
+    override suspend fun dirtyRecords(): List<SyncRecord> = adapters.values.flatMap { it.dirtyRecords(json) }
 
     override suspend fun applyRemote(record: SyncRecord) {
-        val adapter = adapters[record.type] ?: return // unknown type from a newer app version
-        adapter.apply(record)
-    }
-
-    private suspend fun <E : SyncEntity> Adapter<E>.apply(record: SyncRecord) {
-        val decoded = try {
-            json.decodeFromString(serializer, record.payload)
-        } catch (e: SerializationException) {
-            Log.w(TAG, "Skipping undecodable ${record.type} ${record.id}", e)
-            return
-        } catch (e: IllegalArgumentException) {
-            Log.w(TAG, "Skipping invalid ${record.type} ${record.id}", e)
-            return
-        }
-        dao.upsert(withMeta(decoded, record))
+        // Unknown types (from a newer app version) are ignored.
+        adapters[record.type]?.applyRecord(json, record)
     }
 
     override suspend fun markClean(record: SyncRecord) {
