@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Only used by the window/launcher. All UI colours live in ui/theme/FinanceColors.kt. -->
+    <color name="background">#FF0F0F14</color>
+    <color name="primary">#FF8B5CF6</color>
+    <color name="launcher_background">#FF1A1A23</color>
+</resources>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- German is the default language. Add values-en/strings.xml etc. for translations. -->
+<resources>
+    <string name="app_name">TG Finance</string>
+
+    <!-- Navigation -->
+    <string name="nav_dashboard">Übersicht</string>
+    <string name="nav_transactions">Buchungen</string>
+    <string name="nav_accounts">Konten</string>
+    <string name="nav_statistics">Statistik</string>
+    <string name="nav_more">Mehr</string>
+
+    <!-- Common actions -->
+    <string name="action_add_transaction">Buchung hinzufügen</string>
+    <string name="action_add_transaction_short">Buchung</string>
+    <string name="action_all">Alle</string>
+    <string name="action_back">Zurück</string>
+    <string name="action_cancel">Abbrechen</string>
+    <string name="action_clear">Leeren</string>
+    <string name="action_close">Schließen</string>
+    <string name="action_collapse">Weniger anzeigen</string>
+    <string name="action_expand">Mehr anzeigen</string>
+    <string name="action_delete">Löschen</string>
+    <string name="action_edit">Bearbeiten</string>
+    <string name="action_next_period">Nächster Zeitraum</string>
+    <string name="action_previous_period">Vorheriger Zeitraum</string>
+    <string name="action_ok">OK</string>
+    <string name="action_remove">Entfernen</string>
+    <string name="action_reset_filters">Filter zurücksetzen</string>
+    <string name="action_save">Speichern</string>
+    <string name="action_show_all">Alle anzeigen</string>
+    <string name="action_show_less">Weniger anzeigen</string>
+    <string name="action_transfer">Umbuchen</string>
+    <string name="action_undo">Rückgängig</string>
+
+    <!-- Labels -->
+    <string name="label_income">Einnahmen</string>
+    <string name="label_expenses">Ausgaben</string>
+    <string name="label_net">Saldo</string>
+    <string name="label_total">Gesamt</string>
+
+    <!-- Dates -->
+    <string name="date_today">Heute</string>
+    <string name="date_yesterday">Gestern</string>
+    <string name="date_pick">Datum wählen</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_total_balance">Gesamtsaldo</string>
+    <string name="dashboard_top_categories">Top-Kategorien</string>
+    <string name="dashboard_recent">Letzte Buchungen</string>
+    <string name="dashboard_no_budgets">Noch keine Budgets. Lege fest, wie viel du pro Monat für eine Kategorie ausgeben möchtest.</string>
+    <string name="dashboard_no_expenses">In diesem Monat noch keine Ausgaben.</string>
+    <string name="dashboard_no_more_categories">Keine weiteren Kategorien.</string>
+    <plurals name="dashboard_over_budget">
+        <item quantity="one">Budget überschritten: %2$s</item>
+        <item quantity="other">%1$d Budgets überschritten: %2$s</item>
+    </plurals>
+
+    <!-- Transactions -->
+    <string name="transaction_new">Neue Buchung</string>
+    <string name="transaction_edit">Buchung bearbeiten</string>
+    <string name="transaction_type_income">Einnahme</string>
+    <string name="transaction_type_expense">Ausgabe</string>
+    <string name="transaction_type_transfer">Umbuchung</string>
+    <string name="transaction_deleted">Buchung gelöscht</string>
+    <string name="transaction_delete_title">Buchung löschen?</string>
+    <string name="transaction_delete_message">Die Buchung wird entfernt und alle Salden werden neu berechnet.</string>
+    <string name="transactions_empty_title">Noch keine Buchungen</string>
+    <string name="transactions_empty_message">Erfasse deine erste Einnahme oder Ausgabe – das dauert nur ein paar Sekunden.</string>
+    <string name="transactions_no_results_title">Nichts gefunden</string>
+    <string name="transactions_no_results_message">Keine Buchung passt zu Suche und Filtern.</string>
+    <string name="transactions_pane_title">Buchung auswählen</string>
+    <string name="transactions_pane_message">Wähle links eine Buchung aus, um sie zu bearbeiten, oder lege eine neue an.</string>
+    <string name="transactions_result_summary">%1$d Treffer</string>
+    <string name="transactions_search_hint">Notiz, Kategorie oder Konto suchen</string>
+    <string name="category_none">Ohne Kategorie</string>
+
+    <!-- Filters & periods -->
+    <string name="filter_all">Alle</string>
+    <string name="filter_type">Typ</string>
+    <string name="filter_period">Zeitraum</string>
+    <string name="filter_account">Konto</string>
+    <string name="filter_category">Kategorie</string>
+    <string name="period_this_month">Dieser Monat</string>
+    <string name="period_last_month">Letzter Monat</string>
+    <string name="period_last_3_months">Letzte 3 Monate</string>
+    <string name="period_this_year">Dieses Jahr</string>
+    <string name="period_week">Woche</string>
+    <string name="period_month">Monat</string>
+    <string name="period_quarter">Quartal</string>
+    <string name="period_year">Jahr</string>
+
+    <!-- Form fields -->
+    <string name="field_amount">Betrag</string>
+    <string name="field_category">Kategorie</string>
+    <string name="field_account">Konto</string>
+    <string name="field_from_account">Von Konto</string>
+    <string name="field_to_account">Auf Konto</string>
+    <string name="field_date">Datum</string>
+    <string name="field_note">Notiz (optional)</string>
+    <string name="field_name">Name</string>
+    <string name="field_account_type">Kontoart</string>
+    <string name="field_initial_balance">Anfangssaldo</string>
+    <string name="field_negative_balance">Anfangssaldo ist negativ (z. B. Kreditkarte)</string>
+    <string name="field_color">Farbe</string>
+    <string name="field_icon">Symbol</string>
+    <string name="field_archived">Archiviert</string>
+    <string name="field_archived_hint">Wird bei neuen Buchungen nicht mehr angeboten, zählt aber weiter zum Gesamtsaldo.</string>
+    <string name="field_monthly_limit">Monatliches Limit</string>
+    <string name="field_frequency">Rhythmus</string>
+    <string name="field_interval">Alle … (Anzahl)</string>
+    <string name="field_start_date">Erste Buchung am</string>
+    <string name="field_end_date">Endet am</string>
+    <string name="field_active">Aktiv</string>
+    <string name="field_name_hint_recurring">Bezeichnung (z. B. Miete, Streaming)</string>
+    <string name="field_target_amount">Zielbetrag</string>
+    <string name="field_saved_amount">Bereits gespart</string>
+    <string name="field_target_date">Zieldatum</string>
+
+    <!-- Errors -->
+    <string name="error_amount_invalid">Bitte einen gültigen Betrag eingeben.</string>
+    <string name="error_account_required">Bitte ein Konto wählen.</string>
+    <string name="error_category_required">Bitte eine Kategorie wählen.</string>
+    <string name="error_transfer_accounts">Für eine Umbuchung zwei verschiedene Konten wählen.</string>
+    <string name="error_name_required">Bitte einen Namen eingeben.</string>
+    <string name="error_end_before_start">Das Enddatum liegt vor dem Startdatum.</string>
+
+    <!-- Accounts -->
+    <string name="account_add">Konto hinzufügen</string>
+    <string name="account_edit">Konto bearbeiten</string>
+    <string name="account_default_checking">Girokonto</string>
+    <string name="account_default_cash">Bargeld</string>
+    <string name="account_type_checking">Girokonto</string>
+    <string name="account_type_cash">Bargeld</string>
+    <string name="account_type_savings">Sparkonto</string>
+    <string name="account_type_credit_card">Kreditkarte</string>
+    <string name="account_type_investment">Depot</string>
+    <string name="account_type_other">Sonstiges</string>
+    <string name="account_initial_balance_value">Anfangssaldo: %1$s</string>
+    <string name="account_no_transactions">Noch keine Buchungen auf diesem Konto.</string>
+    <string name="account_delete_title">Konto löschen?</string>
+    <string name="account_delete_message">Das Konto und alle zugehörigen Buchungen und wiederkehrenden Buchungen werden gelöscht. Tipp: Archivieren behält den Verlauf.</string>
+    <string name="accounts_archived">Archiviert</string>
+    <string name="accounts_empty_title">Noch keine Konten</string>
+    <string name="accounts_empty_message">Lege z. B. dein Girokonto, Bargeld oder Sparkonto an.</string>
+
+    <!-- Categories -->
+    <string name="categories_title">Kategorien</string>
+    <string name="category_add">Kategorie hinzufügen</string>
+    <string name="category_edit">Kategorie bearbeiten</string>
+    <string name="category_delete_title">Kategorie löschen?</string>
+    <string name="category_delete_message">Bestehende Buchungen behalten den Namen. Ein Budget für diese Kategorie wird entfernt.</string>
+    <string name="cat_groceries">Lebensmittel</string>
+    <string name="cat_dining">Restaurant &amp; Café</string>
+    <string name="cat_housing">Wohnen &amp; Miete</string>
+    <string name="cat_utilities">Energie &amp; Nebenkosten</string>
+    <string name="cat_transport">Mobilität</string>
+    <string name="cat_health">Gesundheit</string>
+    <string name="cat_leisure">Freizeit</string>
+    <string name="cat_shopping">Shopping</string>
+    <string name="cat_subscriptions">Abos &amp; Medien</string>
+    <string name="cat_insurance">Versicherungen</string>
+    <string name="cat_education">Bildung</string>
+    <string name="cat_travel">Reisen</string>
+    <string name="cat_gifts">Geschenke &amp; Spenden</string>
+    <string name="cat_other">Sonstiges</string>
+    <string name="cat_salary">Gehalt</string>
+    <string name="cat_side_income">Nebeneinkünfte</string>
+    <string name="cat_interest">Zinsen &amp; Dividenden</string>
+    <string name="cat_gifts_received">Geschenke</string>
+    <string name="cat_other_income">Sonstige Einnahmen</string>
+
+    <!-- Budgets -->
+    <string name="budgets_title">Budgets</string>
+    <string name="budgets_total">Alle Budgets</string>
+    <string name="budgets_spent_of">%1$s von %2$s</string>
+    <string name="budgets_empty_title">Noch keine Budgets</string>
+    <string name="budgets_empty_message">Setze ein monatliches Limit pro Kategorie. Ab 80 % wirst du gewarnt.</string>
+    <string name="budget_add">Budget hinzufügen</string>
+    <string name="budget_edit">Budget bearbeiten</string>
+    <string name="budget_hint">Gilt für jeden Monat ab deinem eingestellten Monatsbeginn.</string>
+    <string name="budget_remaining">Noch %1$s übrig</string>
+    <string name="budget_over_by">%1$s über dem Budget</string>
+    <string name="budget_exceeded">Budget überschritten</string>
+    <string name="budget_warning">Budget fast aufgebraucht</string>
+    <string name="budget_delete_title">Budget löschen?</string>
+    <string name="budget_delete_message">Das Budget wird entfernt. Deine Buchungen bleiben erhalten.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_by_category">Nach Kategorie</string>
+    <string name="statistics_income_vs_expense">Einnahmen und Ausgaben</string>
+    <string name="statistics_balance_trend">Verlauf Gesamtsaldo</string>
+    <string name="statistics_balance_at">Stand %1$s</string>
+    <string name="statistics_no_data">Keine Daten in diesem Zeitraum.</string>
+    <string name="statistics_savings_rate">Sparquote: %1$d %%</string>
+    <string name="statistics_tap_bar">Tippe auf einen Balken für Details.</string>
+
+    <!-- Recurring -->
+    <string name="recurring_title">Wiederkehrende Buchungen</string>
+    <string name="recurring_add">Wiederkehrende Buchung anlegen</string>
+    <string name="recurring_edit">Wiederkehrende Buchung bearbeiten</string>
+    <string name="recurring_empty_title">Nichts wiederkehrend</string>
+    <string name="recurring_empty_message">Miete, Gehalt oder Abos werden automatisch gebucht, sobald sie fällig sind.</string>
+    <string name="recurring_monthly_effect">Monatlicher Effekt (ca.)</string>
+    <string name="recurring_next">nächste: %1$s</string>
+    <string name="recurring_paused">Pausiert</string>
+    <string name="recurring_hint">Fällige Buchungen werden automatisch im Hintergrund erstellt – auch rückwirkend, falls das Gerät aus war.</string>
+    <string name="recurring_delete_title">Wiederkehrende Buchung löschen?</string>
+    <string name="recurring_delete_message">Künftige Buchungen werden nicht mehr erstellt. Bereits gebuchte bleiben erhalten.</string>
+    <string name="frequency_daily">Täglich</string>
+    <string name="frequency_weekly">Wöchentlich</string>
+    <string name="frequency_monthly">Monatlich</string>
+    <string name="frequency_yearly">Jährlich</string>
+    <string name="frequency_every_n_days">Alle %1$d Tage</string>
+    <string name="frequency_every_n_weeks">Alle %1$d Wochen</string>
+    <string name="frequency_every_n_months">Alle %1$d Monate</string>
+    <string name="frequency_every_n_years">Alle %1$d Jahre</string>
+
+    <!-- Goals -->
+    <string name="goals_title">Sparziele</string>
+    <string name="goals_total">%1$s von %2$s gespart</string>
+    <string name="goals_empty_title">Noch keine Sparziele</string>
+    <string name="goals_empty_message">Ob Urlaub oder Notgroschen: Setz dir ein Ziel und verfolge deinen Fortschritt.</string>
+    <string name="goal_add">Sparziel anlegen</string>
+    <string name="goal_edit">Sparziel bearbeiten</string>
+    <string name="goal_deposit">Einzahlen</string>
+    <string name="goal_withdraw">Entnehmen</string>
+    <string name="goal_of">von %1$s</string>
+    <string name="goal_until">bis %1$s</string>
+    <string name="goal_reached">Ziel erreicht!</string>
+    <string name="goal_missing">Es fehlen noch %1$s</string>
+    <string name="goal_monthly_needed">%1$s pro Monat nötig</string>
+    <string name="goal_delete_title">Sparziel löschen?</string>
+    <string name="goal_delete_message">Das Sparziel wird entfernt.</string>
+
+    <!-- More -->
+    <string name="more_budgets_subtitle">Monatliche Limits pro Kategorie</string>
+    <string name="more_goals_subtitle">Ziele und Fortschritt</string>
+    <string name="more_recurring_subtitle">Miete, Abos, Gehalt automatisch</string>
+    <string name="more_categories_subtitle">Eigene Kategorien mit Symbol und Farbe</string>
+    <string name="more_backup_subtitle">CSV-Export und lokales Backup</string>
+    <string name="more_settings_subtitle">Währung, Monatsbeginn, App-Sperre</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_section_general">Allgemein</string>
+    <string name="settings_section_security">Sicherheit</string>
+    <string name="settings_section_data">Daten</string>
+    <string name="settings_currency">Währung</string>
+    <string name="settings_first_day_of_week">Wochenbeginn</string>
+    <string name="settings_month_start">Monatsbeginn</string>
+    <string name="settings_month_start_hint">z. B. dein Zahltag – Budgets und Monatsübersicht beginnen an diesem Tag.</string>
+    <string name="settings_month_start_value">am %1$d.</string>
+    <string name="settings_theme">Design</string>
+    <string name="settings_biometric">App-Sperre</string>
+    <string name="settings_biometric_hint">Beim Öffnen mit Fingerabdruck, Gesicht oder Geräte-PIN entsperren.</string>
+    <string name="settings_biometric_unavailable">Auf diesem Gerät ist keine Displaysperre eingerichtet.</string>
+    <string name="settings_about">Version %1$s · Alle Daten bleiben auf deinem Gerät.</string>
+    <string name="theme_dark">Dunkel</string>
+    <string name="theme_light">Hell</string>
+    <string name="theme_system">Wie System</string>
+
+    <!-- Lock -->
+    <string name="lock_title">TG Finance ist gesperrt</string>
+    <string name="lock_message">Entsperre die App, um deine Finanzen zu sehen.</string>
+    <string name="lock_unlock">Entsperren</string>
+    <string name="lock_prompt_title">TG Finance entsperren</string>
+    <string name="lock_prompt_subtitle">Bestätige deine Identität</string>
+
+    <!-- Backup & export -->
+    <string name="backup_title">Export &amp; Backup</string>
+    <string name="backup_csv_title">CSV-Export</string>
+    <string name="backup_csv_message">Alle Buchungen als Tabelle, z. B. für Excel oder LibreOffice (Trennzeichen Semikolon).</string>
+    <string name="backup_csv_action">Als CSV exportieren</string>
+    <string name="backup_csv_done">%1$d Buchungen exportiert</string>
+    <string name="backup_export_title">Backup erstellen</string>
+    <string name="backup_export_message">Sichert Konten, Kategorien, Buchungen, Budgets, wiederkehrende Buchungen und Sparziele in einer Datei, die du selbst aufbewahrst.</string>
+    <string name="backup_export_action">Backup speichern</string>
+    <string name="backup_export_done">Backup mit %1$d Einträgen gespeichert</string>
+    <string name="backup_import_title">Backup wiederherstellen</string>
+    <string name="backup_import_message">Ersetzt alle aktuellen Daten durch den Inhalt einer Backup-Datei.</string>
+    <string name="backup_import_action">Wiederherstellen</string>
+    <string name="backup_import_confirm_title">Daten ersetzen?</string>
+    <string name="backup_import_confirm_message">Alle aktuellen Daten werden durch das Backup ersetzt. Das kann nicht rückgängig gemacht werden.</string>
+    <string name="backup_import_done">%1$d Einträge wiederhergestellt</string>
+    <string name="backup_error_invalid">Die Datei ist kein gültiges TG-Finance-Backup.</string>
+    <string name="backup_error_io">Die Datei konnte nicht gelesen oder geschrieben werden.</string>
+
+    <!-- CSV header -->
+    <string name="csv_date">Datum</string>
+    <string name="csv_type">Typ</string>
+    <string name="csv_amount">Betrag</string>
+    <string name="csv_currency">Währung</string>
+    <string name="csv_category">Kategorie</string>
+    <string name="csv_account">Konto</string>
+    <string name="csv_to_account">Zielkonto</string>
+    <string name="csv_note">Notiz</string>
+</resources>

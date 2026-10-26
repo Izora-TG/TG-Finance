@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stylised wallet with a rising bar chart, violet on dark. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FF8B5CF6"
+        android:pathData="M34,38h40a6,6 0,0 1,6 6v24a6,6 0,0 1,-6 6h-40a6,6 0,0 1,-6 -6v-24a6,6 0,0 1,6 -6z" />
+    <path
+        android:fillColor="#FF0F0F14"
+        android:pathData="M38,64h5v-8h-5z M47,64h5v-13h-5z M56,64h5v-18h-5z" />
+    <path
+        android:fillColor="#FFC4B5FD"
+        android:pathData="M66,50h14v12h-14a6,6 0,0 1,0 -12z" />
+    <path
+        android:fillColor="#FF0F0F14"
+        android:pathData="M68,56m-2.5,0a2.5,2.5 0,1 1,5 0a2.5,2.5 0,1 1,-5 0" />
+</vector>
