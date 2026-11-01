@@ -88,6 +88,10 @@ fun TransactionsRoute(
     val adaptive = LocalAdaptiveInfo.current
     var selected by rememberSaveable { mutableStateOf<String?>(null) }
     var paneGeneration by rememberSaveable { mutableIntStateOf(0) }
+    val openInPane: (String) -> Unit = { id ->
+        selected = id
+        paneGeneration++
+    }
 
     val actions = TransactionsActions(
         onQueryChange = viewModel::setQuery,
@@ -99,8 +103,16 @@ fun TransactionsRoute(
         onDelete = viewModel::delete,
         onUndo = viewModel::undoDelete,
         onUndoDismissed = viewModel::dismissUndo,
-        onAdd = if (adaptive.twoPane) ({ selected = NEW_ITEM; paneGeneration++ }) else onAdd,
-        onOpen = if (adaptive.twoPane) ({ selected = it; paneGeneration++ }) else onOpen,
+        onAdd = if (adaptive.twoPane) {
+            { openInPane(NEW_ITEM) }
+        } else {
+            onAdd
+        },
+        onOpen = if (adaptive.twoPane) {
+            { id: String -> openInPane(id) }
+        } else {
+            onOpen
+        },
     )
 
     if (adaptive.twoPane) {
